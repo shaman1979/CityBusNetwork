@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CityBusNetwork.Datas
 {
-    public class Route
+    public class Route : IPresenceUniqueNumber
     {
         public int Number { get; private set; }
         public Queue<Bus> Buses { get; private set; } 
@@ -12,6 +12,16 @@ namespace CityBusNetwork.Datas
         public Route(int number)
         {
             Number = number;
+        }
+
+        public void AddBus(Bus bus)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int BusCount()
+        {
+            throw new NotImplementedException();
         }
     }
 }

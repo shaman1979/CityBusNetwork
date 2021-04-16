@@ -1,15 +1,41 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CityBusNetwork.Collections
 {
-    public class CircularLinkedList<T>
+    public class CircularLinkedList<T> : IEnumerable<T> where T : IPresenceUniqueNumber
     {
         private Node<T> head;
         private Node<T> tail;
 
-        private class Node<TData>
+        public void Add(T data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(T data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryFindElement(int number, out T element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        private class Node<TData> where TData : IPresenceUniqueNumber
         {
             public Node(TData data)
             {

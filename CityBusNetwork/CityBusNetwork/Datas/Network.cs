@@ -5,6 +5,9 @@ using System.Text;
 
 namespace CityBusNetwork.Datas
 {
+    /// <summary>
+    /// Сеть маршрутов
+    /// </summary>
     public class Network
     {
         private RouteCircularLinkedList routes;
@@ -43,7 +46,7 @@ namespace CityBusNetwork.Datas
         }
 
         /// <summary>
-        /// Количество автобусов на во всей сети
+        /// Количество автобусов во всей сети
         /// </summary>
         /// <returns>Количество автобусов</returns>
         public int GetAllBusCount()

@@ -4,9 +4,19 @@ using System.Text;
 
 namespace CityBusNetwork.Datas
 {
+    /// <summary>
+    /// Маршрут
+    /// </summary>
     public class Route
     {
+        /// <summary>
+        /// Номер маршрута
+        /// </summary>
         public int Number { get; private set; }
+
+        /// <summary>
+        /// Очередь из автобусов 
+        /// </summary>
         public BusesQueue Buses { get; private set; } 
 
         public Route(int number)

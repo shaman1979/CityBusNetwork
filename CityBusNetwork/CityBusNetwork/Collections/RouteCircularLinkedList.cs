@@ -8,8 +8,8 @@ namespace CityBusNetwork.Collections
 {
     public class RouteCircularLinkedList
     {
-        private Node head;
-        private Node tail;
+        private Route head;
+        private Route tail;
 
         /// <summary>
         /// Добавить марштур в список
@@ -40,14 +40,9 @@ namespace CityBusNetwork.Collections
             throw new NotImplementedException();
         }
 
-        private class Node
+        public Route GetHead()
         {
-            public Node(Route data)
-            {
-                Data = data;
-            }
-            public Route Data { get; set; }
-            public Node Next { get; set; }
+            return head;
         }
     }
 }

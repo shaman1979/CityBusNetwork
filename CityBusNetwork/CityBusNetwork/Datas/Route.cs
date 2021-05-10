@@ -14,6 +14,8 @@ namespace CityBusNetwork.Datas
         /// </summary>
         public int Number { get; private set; }
 
+        public Route Next { get; private set; }
+
         /// <summary>
         /// Очередь из автобусов 
         /// </summary>
@@ -41,6 +43,11 @@ namespace CityBusNetwork.Datas
         public Bus GetFirstBus()
         {
             return Buses.FirstElement();
+        }
+
+        public Route GetNext()
+        {
+            return Next;
         }
 
         /// <summary>

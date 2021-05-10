@@ -47,16 +47,28 @@ namespace CityBusNetwork.Collections
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Первый элемент 
+        /// </summary>
+        /// <returns></returns>
         public Bus FirstElement()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Последний элемент 
+        /// </summary>
+        /// <returns></returns>
         public Bus LastElement()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Удаление элемента
+        /// </summary>
+        /// <param name="bus"></param>
         public void Remove(Bus bus)
         {
             throw new NotImplementedException();

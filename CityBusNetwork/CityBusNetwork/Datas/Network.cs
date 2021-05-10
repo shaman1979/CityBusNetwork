@@ -45,6 +45,26 @@ namespace CityBusNetwork.Datas
             throw new NotImplementedException();
         }
 
+        public void Remove(Route route)
+        {
+            routes.Remove(route);
+        }
+
+        public Route GetHead()
+        {
+            return routes.GetHead();
+        }
+
+        public Route FindRoute(int number)
+        {
+            if(routes.TryFindElement(number, out var route))
+            {
+                return route;
+            }
+
+            return null;
+        }
+
         /// <summary>
         /// Количество автобусов во всей сети
         /// </summary>

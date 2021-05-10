@@ -19,9 +19,10 @@ namespace CityBusNetwork.Datas
         /// </summary>
         public BusesQueue Buses { get; private set; } 
 
-        public Route(int number)
+        public Route(int number, BusesQueue buses)
         {
             Number = number;
+            Buses = buses;
         }
         
         /// <summary>
@@ -30,7 +31,34 @@ namespace CityBusNetwork.Datas
         /// <param name="bus">Автобус</param>
         public void AddBus(Bus bus)
         {
-            throw new NotImplementedException();
+            Buses.Enqueue(bus);
+        }
+
+        /// <summary>
+        /// Первый автобус
+        /// </summary>
+        /// <returns></returns>
+        public Bus GetFirstBus()
+        {
+            return Buses.FirstElement();
+        }
+
+        /// <summary>
+        /// Последний автобус
+        /// </summary>
+        /// <returns></returns>
+        public Bus GetLastBus()
+        {
+            return Buses.LastElement();
+        }
+
+        /// <summary>
+        /// Удаление автобуса из маршрута
+        /// </summary>
+        /// <param name="bus"></param>
+        public void Remove(Bus bus)
+        {
+            Buses.Remove(bus);
         }
 
         /// <summary>
@@ -39,7 +67,7 @@ namespace CityBusNetwork.Datas
         /// <returns>Количество</returns>
         public int BusCount()
         {
-            throw new NotImplementedException();
+            return Buses.GetCount();
         }
     }
 }

@@ -47,6 +47,21 @@ namespace CityBusNetwork.Collections
             throw new NotImplementedException();
         }
 
+        public Bus FirstElement()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Bus LastElement()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(Bus bus)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool IsEmpty()
         {
             throw new NotImplementedException();

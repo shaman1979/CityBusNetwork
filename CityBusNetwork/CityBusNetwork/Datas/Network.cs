@@ -10,68 +10,95 @@ namespace CityBusNetwork.Datas
     /// </summary>
     public class Network
     {
-        private RouteCircularLinkedList routes;
+        public Route Head { get; private set; }
+        public Route Tail { get; private set; }
 
-        public Network(RouteCircularLinkedList routes)
+        public void Add(Route route)
         {
-            this.routes = routes;
-        }
-
-        /// <summary>
-        /// Добавление маршрута в сеть
-        /// </summary>
-        /// <param name="route">Маршрут</param>
-        public void AddRoute(Route route)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Добавление маршрутов в сеть
-        /// </summary>
-        /// <param name="routes">Список маршрутов</param>
-        public void SetRoutes(RouteCircularLinkedList routes)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Количество автобусов на определенном маршруте
-        /// </summary>
-        /// <param name="routeNumber">Номер маршрута</param>
-        /// <returns>Количество автобусов</returns>
-        public int GetBusCountOnRoute(int routeNumber)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Remove(Route route)
-        {
-            routes.Remove(route);
-        }
-
-        public Route GetHead()
-        {
-            return routes.GetHead();
-        }
-
-        public Route FindRoute(int number)
-        {
-            if(routes.TryFindElement(number, out var route))
+            if (Head == null)
             {
-                return route;
+                Head = route;
+                Tail = route;
+                Tail.Next = Head;
+            }
+            else
+            {
+                Head.Next = Head;
+                Tail.Next = route;
+                Tail = route;
+            }
+        }
+
+        public void Add(Route previous, Route route)
+        {
+            var current = Find(previous);
+            if (current != null)
+            {
+                var tmp = current.Next;
+                current.Next = route;
+                route.Next = tmp;
+            }
+        }
+
+        public bool Remove(Route route)
+        {
+            var current = Head;
+            var previous = new Route();
+
+            do
+            {
+                if (current.Equals(route))
+                {
+                    if (previous != null)
+                    {
+                        previous.Next = current.Next;
+
+                        if (current == Tail)
+                            Tail = previous;
+                    }
+                    else
+                    {
+                        Head = current.Next;
+                        Tail.Next = current.Next;
+                    }
+                    return true;
+                }
+
+                previous = current;
+                current = current.Next;
+            } while (current != Head);
+
+            return false;
+        }
+        
+        public Route Find(Route route)
+        {
+            var current = Head;
+            
+            while (!current.Equals(route))
+            {
+                if (current.Equals(Tail))
+                {
+                    return null;
+                }
+                
+                current = current.Next;
             }
 
-            return null;
+            return current;
         }
 
-        /// <summary>
-        /// Количество автобусов во всей сети
-        /// </summary>
-        /// <returns>Количество автобусов</returns>
-        public int GetAllBusCount()
+        public int GetAllBusesCount()
         {
-            throw new NotImplementedException();
+            var current = Head;
+            var sum = 0;
+            
+            while (current != null && current != Tail)
+            {
+                sum += current.Count;
+            }
+
+            return sum;
         }
     }
 }

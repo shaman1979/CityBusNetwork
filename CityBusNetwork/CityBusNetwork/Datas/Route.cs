@@ -7,10 +7,14 @@ namespace CityBusNetwork.Datas
 
         public Bus[] buses;
 
-        public Route(int countBus, Route next)
+        public Route()
+        {
+            
+        }
+        
+        public Route(int countBus)
         {
             this.buses = new Bus[countBus];
-            Next = next;
         }
 
         public Route Next { get; set; }

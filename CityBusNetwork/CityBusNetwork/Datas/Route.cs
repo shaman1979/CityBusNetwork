@@ -1,80 +1,63 @@
-﻿using CityBusNetwork.Collections;
-using System;
-using System.Text;
+﻿using System;
 
 namespace CityBusNetwork.Datas
 {
-    /// <summary>
-    /// Маршрут
-    /// </summary>
     public class Route
     {
-        /// <summary>
-        /// Номер маршрута
-        /// </summary>
-        public int Number { get; private set; }
 
-        public Route Next { get; private set; }
+        public Bus[] buses;
 
-        /// <summary>
-        /// Очередь из автобусов 
-        /// </summary>
-        public BusesQueue Buses { get; private set; } 
-
-        public Route(int number, BusesQueue buses)
+        public Route(int countBus, Route next)
         {
-            Number = number;
-            Buses = buses;
+            this.buses = new Bus[countBus];
+            Next = next;
+        }
+
+        public Route Next { get; set; }
+
+        public int index;
+
+        public void AddBuses(Bus bus)
+        {
+            if (buses.Length < index)
+            {
+                Array.Resize(ref buses, buses.Length * 2);
+            }
+
+            buses[index] = bus;
+            index++;
+        }
+
+        public Bus GetBus()
+        {
+            var currentBus = buses[0];
+            Remove();
+            return currentBus;
+        }
+
+        public void Remove()
+        {
+            for (int i = 0; i < buses.Length; i++)
+            {
+                if (i + 1 > buses.Length)
+                    break;
+
+                buses[i] = buses[i + 1];
+            }
+
+            index--;
         }
         
-        /// <summary>
-        /// Добавить автобус на маршрут
-        /// </summary>
-        /// <param name="bus">Автобус</param>
-        public void AddBus(Bus bus)
+        public Bus LastBus()
         {
-            Buses.Enqueue(bus);
+            return buses[index];
         }
 
-        /// <summary>
-        /// Первый автобус
-        /// </summary>
-        /// <returns></returns>
-        public Bus GetFirstBus()
+        public Bus FirstBus()
         {
-            return Buses.FirstElement();
+            return buses[0];
         }
-
-        public Route GetNext()
-        {
-            return Next;
-        }
-
-        /// <summary>
-        /// Последний автобус
-        /// </summary>
-        /// <returns></returns>
-        public Bus GetLastBus()
-        {
-            return Buses.LastElement();
-        }
-
-        /// <summary>
-        /// Удаление автобуса из маршрута
-        /// </summary>
-        /// <param name="bus"></param>
-        public void Remove(Bus bus)
-        {
-            Buses.Remove(bus);
-        }
-
-        /// <summary>
-        /// Общее количество автобусов на маршруте
-        /// </summary>
-        /// <returns>Количество</returns>
-        public int BusCount()
-        {
-            return Buses.GetCount();
-        }
+        
+        public int Count => index;
     }
 }
